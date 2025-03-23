@@ -8,7 +8,7 @@ import asyncio
 app = FastAPI()
 
 
-@app.get("/craw")
+@app.get("/search")
 async def craw_lihkg(query: str, max_results: int = 5):
     # result_json = lihkg.get_lihkg().to_json(orient='records')
     # return json.dumps(json.loads(result_json)).replace('"', '&quot;')\
