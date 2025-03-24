@@ -10,7 +10,7 @@ app = FastAPI()
 
 
 @app.get("/search")
-async def search(query: str, max_results: int = 5):
+async def search_controller(query: str, max_results: int = 5):
     # result_json = lihkg.get_lihkg().to_json(orient='records')
     # return json.dumps(json.loads(result_json)).replace('"', '&quot;')\
     results = search(query, max_results)
@@ -22,7 +22,7 @@ async def search(query: str, max_results: int = 5):
     return results
 
 @app.get("/index")
-async def index(query: str, max_results: int = 5):
+async def index_controller(query: str, max_results: int = 5):
     # result_json = lihkg.get_lihkg().to_json(orient='records')
     # return json.dumps(json.loads(result_json)).replace('"', '&quot;')\
     results = search(query, max_results)
@@ -37,7 +37,7 @@ async def index(query: str, max_results: int = 5):
       'content': result['content']
     }
     headers={'Content-Type': 'application/json'}
-    index_result = requests.post('/v1/rag/query', json=body, headers=headers)
+    index_result = requests.post('http://localhost:8088/upload/text', json=body, headers=headers)
     return index_result.json()
 
 if __name__ == "__main__":
