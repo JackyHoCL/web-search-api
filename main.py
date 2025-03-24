@@ -36,8 +36,9 @@ async def index(query: str, max_results: int = 5):
       'name': result['title'],
       'content': result['content']
     }
-    index_result = requests.post('/v1/rag/query', data=body)
-    return index_result
+    headers={'Content-Type': 'application/json'}
+    index_result = requests.post('/v1/rag/query', json=body, headers=headers)
+    return index_result.json()
 
 if __name__ == "__main__":
     import uvicorn
