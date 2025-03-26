@@ -5,6 +5,7 @@ from web_search import search
 import json
 import asyncio
 import requests
+import time
 
 app = FastAPI()
 
@@ -38,6 +39,7 @@ async def index_controller(query: str, max_results: int = 10):
     }
     headers={'Content-Type': 'application/json'}
     index_result = requests.post('http://localhost:8088/upload/text', json=body, headers=headers)
+    time.sleep(3)
     return index_result.json()
 
 if __name__ == "__main__":
