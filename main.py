@@ -22,7 +22,7 @@ async def search_controller(query: str, max_results: int = 10):
     return results
 
 @app.get("/index")
-async def index_controller(query: str, max_results: int = 5):
+async def index_controller(query: str, max_results: int = 10):
     # result_json = lihkg.get_lihkg().to_json(orient='records')
     # return json.dumps(json.loads(result_json)).replace('"', '&quot;')\
     results = search(query, max_results)
